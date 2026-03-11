@@ -34,10 +34,68 @@
     opacity: 0.4;
   }
 
-  /* ── HEADER ── */
-  header {
-    padding: 72px 60px 56px;
+  /* ── VIDEO HERO ── */
+  .video-hero {
     position: relative;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .video-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .video-bg iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 177.78vh; /* 16:9 aspect ratio coverage */
+    height: 100vh;
+    min-width: 100%;
+    min-height: 56.25vw;
+    transform: translate(-50%, -50%);
+    border: none;
+    pointer-events: none;
+  }
+  /* Gradient overlays for readability and fade-to-dark */
+  .video-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+      linear-gradient(180deg,
+        rgba(10,9,6,0.15) 0%,
+        rgba(10,9,6,0.0) 20%,
+        rgba(10,9,6,0.0) 40%,
+        rgba(10,9,6,0.55) 65%,
+        rgba(10,9,6,0.88) 82%,
+        rgba(10,9,6,1) 100%
+      ),
+      linear-gradient(90deg,
+        rgba(10,9,6,0.6) 0%,
+        rgba(10,9,6,0.0) 50%,
+        rgba(10,9,6,0.3) 100%
+      );
+    pointer-events: none;
+  }
+  /* Subtle vignette */
+  .video-vignette {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    box-shadow: inset 0 0 200px rgba(10,9,6,0.5);
+    pointer-events: none;
+  }
+
+  /* ── HEADER (now inside video hero) ── */
+  header {
+    position: relative;
+    z-index: 2;
+    padding: 72px 60px 56px;
     display: grid;
     grid-template-columns: 1fr auto;
     gap: 40px;
@@ -60,7 +118,7 @@
     color: var(--gold);
     margin-bottom: 18px;
     opacity: 0;
-    animation: fadeUp 0.7s ease forwards 0.1s;
+    animation: fadeUp 0.7s ease forwards 0.6s;
   }
   .header-name {
     font-family: 'Cormorant Garamond', serif;
@@ -70,7 +128,8 @@
     color: var(--cream);
     letter-spacing: -0.02em;
     opacity: 0;
-    animation: fadeUp 0.8s ease forwards 0.25s;
+    animation: fadeUp 0.8s ease forwards 0.75s;
+    text-shadow: 0 2px 40px rgba(0,0,0,0.5);
   }
   .header-name em { font-style: italic; color: var(--gold); }
 
@@ -80,9 +139,10 @@
     font-family: 'Cormorant Garamond', serif;
     font-size: 16px;
     line-height: 1.7;
-    color: var(--text);
+    color: var(--cream);
     opacity: 0;
-    animation: fadeUp 0.8s ease forwards 0.4s;
+    animation: fadeUp 0.8s ease forwards 0.9s;
+    text-shadow: 0 1px 20px rgba(0,0,0,0.6);
   }
 
   .header-contact {
@@ -91,7 +151,7 @@
     align-items: flex-end;
     gap: 10px;
     opacity: 0;
-    animation: fadeUp 0.8s ease forwards 0.5s;
+    animation: fadeUp 0.8s ease forwards 1.0s;
     padding-bottom: 4px;
   }
   .contact-item {
@@ -119,14 +179,45 @@
     gap: 48px;
     margin-top: 36px;
     padding-top: 28px;
-    border-top: 1px solid rgba(255,255,255,0.06);
+    border-top: 1px solid rgba(255,255,255,0.1);
     opacity: 0;
-    animation: fadeUp 0.8s ease forwards 0.55s;
+    animation: fadeUp 0.8s ease forwards 1.1s;
     flex-wrap: wrap;
   }
   .stat { display: flex; flex-direction: column; gap: 4px; }
   .stat-label { font-size: 8px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); }
-  .stat-value { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--cream); }
+  .stat-value { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--cream); text-shadow: 0 1px 12px rgba(0,0,0,0.4); }
+
+  /* Scroll cue */
+  .scroll-cue {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    padding: 24px 0 0;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 1.4s;
+  }
+  .scroll-cue-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--muted);
+    font-size: 8px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+  .scroll-cue-line {
+    width: 1px;
+    height: 32px;
+    background: linear-gradient(180deg, var(--gold), transparent);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
 
   /* ── SECTION DIVIDERS ── */
   .section-header {
@@ -380,6 +471,7 @@
   }
 
   @media (max-width: 800px) {
+    .video-hero { min-height: 100svh; }
     header { grid-template-columns: 1fr; padding: 48px 24px 40px; }
     .header-contact { align-items: flex-start; }
     .contact-item { align-items: flex-start; }
@@ -396,43 +488,63 @@
 
 <div class="filmstrip" id="filmstrip"></div>
 
-<header>
-  <div class="header-left">
-    <div class="header-eyebrow">Television &amp; Documentary Production</div>
-    <h1 class="header-name">Maya<br><em>Neyman</em></h1>
-    <p class="header-bio">
-      Producer, cinematographer, and content strategist working across Hulu, ABC, Disney+, and Freeform. Experienced across long-form series, breaking news specials, and short-form digital, with a strong background in the kind of projects that start conversations.
-    </p>
-    <div class="header-stats">
-      <div class="stat">
-        <span class="stat-label">Credits</span>
-        <span class="stat-value">26</span>
+<!-- ── VIDEO HERO SECTION ── -->
+<div class="video-hero">
+  <div class="video-bg">
+    <iframe
+      src="https://player.vimeo.com/video/1138980406?h=7122c2edf0&background=1&autoplay=1&loop=1&byline=0&title=0&muted=1&quality=1080p"
+      allow="autoplay; fullscreen"
+      allowfullscreen
+    ></iframe>
+  </div>
+  <div class="video-overlay"></div>
+  <div class="video-vignette"></div>
+
+  <header>
+    <div class="header-left">
+      <div class="header-eyebrow">Television &amp; Documentary Production</div>
+      <h1 class="header-name">Maya<br><em>Neyman</em></h1>
+      <p class="header-bio">
+        Producer, cinematographer, and content strategist working across Hulu, ABC, Disney+, and Freeform. Experienced across long-form series, breaking news specials, and short-form digital, with a strong background in the kind of projects that start conversations.
+      </p>
+      <div class="header-stats">
+        <div class="stat">
+          <span class="stat-label">Credits</span>
+          <span class="stat-value">26</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Series</span>
+          <span class="stat-value">7</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Networks</span>
+          <span class="stat-value">ABC · Hulu · Disney+</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Specialties</span>
+          <span class="stat-value">Associate Producer · Cinematographer · Field · Graphics · Social</span>
+        </div>
       </div>
-      <div class="stat">
-        <span class="stat-label">Series</span>
-        <span class="stat-value">7</span>
+    </div>
+    <div class="header-contact">
+      <div class="contact-item">
+        <span class="contact-label">Email</span>
+        <span class="contact-value"><a href="mailto:maya.neyman@gmail.com">maya.neyman@gmail.com</a></span>
       </div>
-      <div class="stat">
-        <span class="stat-label">Networks</span>
-        <span class="stat-value">ABC · Hulu · Disney+</span>
+      <div class="contact-item">
+        <span class="contact-label">Phone</span>
+        <span class="contact-value"><a href="tel:2166447688">216-644-7688</a></span>
       </div>
-      <div class="stat">
-        <span class="stat-label">Specialties</span>
-        <span class="stat-value">Associate Producer · Cinematographer · Field · Graphics · Social</span>
-      </div>
+    </div>
+  </header>
+
+  <div class="scroll-cue">
+    <div class="scroll-cue-inner">
+      <span>Scroll</span>
+      <div class="scroll-cue-line"></div>
     </div>
   </div>
-  <div class="header-contact">
-    <div class="contact-item">
-      <span class="contact-label">Email</span>
-      <span class="contact-value"><a href="/cdn-cgi/l/email-protection#6c011f020915010d02552c0b010d0500420f0301"><span class="__cf_email__" data-cfemail="a6cbd5c8c3dfcbc7c89fe6c1cbc7cfca88c5c9cb">[email&#160;protected]</span></a></span>
-    </div>
-    <div class="contact-item">
-      <span class="contact-label">Phone</span>
-      <span class="contact-value"><a href="tel:2166447688">216-644-7688</a></span>
-    </div>
-  </div>
-</header>
+</div>
 
 <div class="filter-bar">
   <span class="filter-label-text">Filter —</span>
@@ -475,10 +587,10 @@
 
 <footer>
   <span>Maya Neyman &nbsp;·&nbsp; Production Credits</span>
-  <span><a href="/cdn-cgi/l/email-protection#274a5449425e4a46491e67404a464e4b0944484a" style="color:var(--muted);text-decoration:none;"><span class="__cf_email__" data-cfemail="e8859b868d91858986d1a88f85898184c68b8785">[email&#160;protected]</span></a> &nbsp;·&nbsp; 216-644-7688</span>
+  <span><a href="mailto:maya.neyman@gmail.com" style="color:var(--muted);text-decoration:none;">maya.neyman@gmail.com</a> &nbsp;·&nbsp; 216-644-7688</span>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 // ── TIER 1: Series (episodic muscle) ──
 const tier1 = [
   {
@@ -558,7 +670,7 @@ const tier2 = [
     tags: ["special","social","monoculture"]
   },
   {
-    show: "Lilith Fair: Building a Mystery : The Untold Story",
+    show: "Lilith Fair: Building a Mystery \u2014 The Untold Story",
     link: "https://youtu.be/wJAh2njqK-M?si=qXaqsXSkkSIVBoNF",
     logline: "Drawing on over 600 hours of never-seen footage, this is the untold underdog story of Lilith Fair, the women\u2019s music festival of the late \u201990s.",
     format: "Feature",
@@ -578,7 +690,7 @@ const tier2 = [
   {
     show: "Jelly Roll: Save Me",
     link: "https://youtu.be/v0FBM6orM9Y?si=CtIvpJORFDp0BVYH",
-    logline: "Jelly Roll, a 38-year-old rapper turned country rocker, is taking the country by storm. Unvarnished, raw, authentic : his story inspires millions to hold on, seek help, and begin to heal.",
+    logline: "Jelly Roll, a 38-year-old rapper turned country rocker, is taking the country by storm. Unvarnished, raw, authentic \u2014 his story inspires millions to hold on, seek help, and begin to heal.",
     format: "1-Hour Special",
     platforms: ["Hulu","Disney+"],
     roles: ["Production Associate","Short-Form Content Producer & Editor"],
@@ -587,14 +699,14 @@ const tier2 = [
   {
     show: "Soul of a Nation Presents: Black in Vegas",
     link: "https://youtu.be/L3otC7O0iaY?si=NuaX96NM9KqjZoie",
-    logline: "Exploring the history of Black entertainers in Las Vegas and celebrating those ruling the historic strip : from Usher, Mariah Carey, and Janet Jackson to Boyz II Men, Lionel Richie, and Smokey Robinson.",
+    logline: "Exploring the history of Black entertainers in Las Vegas and celebrating those ruling the historic strip \u2014 from Usher, Mariah Carey, and Janet Jackson to Boyz II Men, Lionel Richie, and Smokey Robinson.",
     format: "1-Hour Special",
     platforms: ["Hulu","ABC"],
     roles: ["Production Associate"],
     tags: ["special","producer","monoculture"]
   },
   {
-    show: "PRIDE: To Be Seen : A Soul of a Nation Presentation",
+    show: "PRIDE: To Be Seen \u2014 A Soul of a Nation Presentation",
     link: "https://youtu.be/n0CxlXeuduI?si=DtBmVYb9zj9c2Zho",
     logline: "Documenting the LGBTQ experience and examining what it means to be seen as a member of the community. Hosted by Cara Delevingne.",
     format: "1-Hour Special",
@@ -636,7 +748,7 @@ const tier3 = [
   {
     show: "Jeremy Renner: The Diane Sawyer Interview",
     link: "https://youtu.be/j4-HGKjSdvA?si=IyajFvF7mnkMF9EI",
-    logline: "Diane Sawyer\u2019s exclusive interview with actor Jeremy Renner : his first since his life-threatening New Year\u2019s Day accident. Renner opens up about the harrowing details and his ongoing recovery.",
+    logline: "Diane Sawyer\u2019s exclusive interview with actor Jeremy Renner \u2014 his first since his life-threatening New Year\u2019s Day accident. Renner opens up about the harrowing details and his ongoing recovery.",
     format: "1-Hour Special",
     platforms: ["Disney+","ABC"],
     roles: ["Production Associate"],
@@ -645,7 +757,7 @@ const tier3 = [
   {
     show: "Truth and Lies: Who Killed JFK?",
     link: "https://youtu.be/ZDkVeOXkhCg?si=WYM-WDICNsLE3WTf",
-    logline: "A deep investigation into one of history\u2019s most enduring mysteries : the assassination of President John F. Kennedy.",
+    logline: "A deep investigation into one of history\u2019s most enduring mysteries \u2014 the assassination of President John F. Kennedy.",
     format: "1-Hour Special",
     platforms: ["ABC"],
     roles: ["Cinematographer","Drone Operator","Production Associate"],
@@ -663,7 +775,7 @@ const tier3 = [
   {
     show: "House of Grucci",
     link: "https://youtu.be/QAfJPFtPEdg?si=OUb_cxmZmiGqTp-q",
-    logline: "\u201cAmerica\u2019s First Family of Fireworks\u201d has lit up the night skies for six generations. Intimate access to personal moments and professional triumphs : where passion and personalities sizzle as bright as their fireworks.",
+    logline: "\u201cAmerica\u2019s First Family of Fireworks\u201d has lit up the night skies for six generations. Intimate access to personal moments and professional triumphs \u2014 where passion and personalities sizzle as bright as their fireworks.",
     format: "1-Hour Special",
     platforms: ["Hulu"],
     roles: ["Production Associate","Camera Operator"],
@@ -699,7 +811,7 @@ const tier3 = [
   {
     show: "The Ivana Trump Story: The First Wife",
     link: "https://www.hulu.com/series/the-ivana-trump-story-the-first-wife-ec3dc62b-0953-4649-83a2-824f2af72fbc",
-    logline: "There is the First Lady. And then there is the First Wife. Exploring the life and legacy of Ivana Trump : devoted mother, businesswoman, and glamour queen whose eye for branding helped build an empire.",
+    logline: "There is the First Lady. And then there is the First Wife. Exploring the life and legacy of Ivana Trump \u2014 devoted mother, businesswoman, and glamour queen whose eye for branding helped build an empire.",
     format: "1-Hour Special",
     platforms: ["Hulu"],
     roles: ["Production Associate"],
@@ -806,6 +918,15 @@ function filter(tag, btn) {
 }
 
 buildTiered();
+
+// ── Fade out scroll cue on scroll ──
+const scrollCue = document.querySelector('.scroll-cue');
+window.addEventListener('scroll', () => {
+  if (scrollCue) {
+    const opacity = Math.max(0, 1 - window.scrollY / 300);
+    scrollCue.style.opacity = opacity;
+  }
+}, { passive: true });
 </script>
 </body>
 </html>
