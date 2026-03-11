@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maya Neyman | Production Credits</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --cream: #f0e8d8;
+    --dark: #0a0906;
+    --dark2: #14110c;
+    --dark3: #1e1a12;
+    --muted: #7a6f5a;
+    --text: #d4c9b2;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--dark);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+  /* ── HEADER ── */
+  header {
+    padding: 72px 60px 56px;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 40px;
+    align-items: end;
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .header-left { display: flex; flex-direction: column; }
+
+  .header-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 18px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.1s;
+  }
+  .header-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 9vw, 120px);
+    font-weight: 300;
+    line-height: 0.88;
+    color: var(--cream);
+    letter-spacing: -0.02em;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.25s;
+  }
+  .header-name em { font-style: italic; color: var(--gold); }
+
+  .header-bio {
+    margin-top: 28px;
+    max-width: 560px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text);
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.4s;
+  }
+
+  .header-contact {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.5s;
+    padding-bottom: 4px;
+  }
+  .contact-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 3px;
+  }
+  .contact-label {
+    font-size: 8px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .contact-value {
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    color: var(--cream);
+  }
+  .contact-value a { color: var(--cream); text-decoration: none; }
+  .contact-value a:hover { color: var(--gold); }
+
+  .header-stats {
+    display: flex;
+    gap: 48px;
+    margin-top: 36px;
+    padding-top: 28px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.55s;
+    flex-wrap: wrap;
+  }
+  .stat { display: flex; flex-direction: column; gap: 4px; }
+  .stat-label { font-size: 8px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); }
+  .stat-value { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--cream); }
+
+  /* ── SECTION DIVIDERS ── */
+  .section-header {
+    padding: 36px 60px 16px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.7s;
+  }
+  .section-label {
+    font-size: 9px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    white-space: nowrap;
+  }
+  .section-rule { flex: 1; height: 1px; background: rgba(201,168,76,0.2); }
+  .section-sublabel {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  /* ── FILTER BAR ── */
+  .filter-bar {
+    padding: 20px 60px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.65s;
+  }
+  .filter-label-text { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); margin-right: 8px; }
+  .filter-btn {
+    background: transparent;
+    border: 1px solid rgba(201,168,76,0.25);
+    color: var(--muted);
+    padding: 5px 14px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+  }
+  .filter-btn:hover, .filter-btn.active {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--dark);
+  }
+
+  /* ── GRID ── */
+  .credits-section { padding: 0 60px 120px; }
+
+  .tier-group { margin-top: 0; }
+
+  .credits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 2px;
+    margin-bottom: 2px;
+  }
+
+  .credit-card {
+    background: var(--dark2);
+    border: 1px solid rgba(255,255,255,0.04);
+    padding: 30px 34px;
+    position: relative;
+    transition: background 0.3s ease, border-color 0.3s ease;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(16px);
+    display: flex;
+    flex-direction: column;
+  }
+  .credit-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.45s ease, transform 0.45s ease, background 0.3s ease;
+  }
+  .credit-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 0;
+    background: var(--gold);
+    transition: height 0.3s ease;
+  }
+  .credit-card:hover::before { height: 100%; }
+  .credit-card:hover { background: var(--dark3); border-color: rgba(201,168,76,0.15); }
+
+  /* Featured card style for tier 1 */
+  .credit-card.featured {
+    border-color: rgba(201,168,76,0.12);
+  }
+  .credit-card.featured .card-show {
+    font-size: 26px;
+  }
+
+  .card-number {
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    color: var(--muted);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .card-number::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.06); }
+  .card-tier-badge {
+    font-size: 8px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border: 1px solid rgba(201,168,76,0.4);
+    color: var(--gold);
+  }
+
+  .card-show {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--cream);
+    line-height: 1.15;
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+  }
+  .card-logline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13.5px;
+    font-style: italic;
+    line-height: 1.65;
+    color: var(--muted);
+    margin-bottom: 18px;
+    flex: 1;
+  }
+  .card-roles {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 18px;
+  }
+  .card-role {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 10px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    line-height: 1.5;
+  }
+  .card-role::before { content: '▸'; color: var(--gold); font-size: 8px; flex-shrink: 0; margin-top: 2px; }
+
+  .card-footer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .card-platform { display: flex; flex-wrap: wrap; gap: 5px; }
+  .platform-tag {
+    font-size: 8px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--muted);
+  }
+  .platform-tag.hulu     { border-color: rgba(28,231,131,0.35); color: #1ce783; }
+  .platform-tag.abc      { border-color: rgba(93,184,255,0.35);  color: #5db8ff; }
+  .platform-tag.disney   { border-color: rgba(201,168,76,0.35);  color: var(--gold); }
+  .platform-tag.freeform { border-color: rgba(180,100,255,0.35); color: #c47fff; }
+  .platform-tag.netflix  { border-color: rgba(229,9,20,0.4);     color: #e50914; }
+  .card-format { font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+
+  /* ── FILMSTRIP ── */
+  .filmstrip {
+    position: fixed;
+    right: 0; top: 0; bottom: 0;
+    width: 26px;
+    background: var(--dark3);
+    border-left: 1px solid rgba(201,168,76,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0;
+    gap: 9px;
+    z-index: 10;
+  }
+  .filmstrip-hole {
+    width: 9px; height: 13px;
+    background: var(--dark);
+    border: 1px solid rgba(201,168,76,0.15);
+    flex-shrink: 0;
+  }
+
+  footer {
+    text-align: center;
+    padding: 36px 40px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 800px) {
+    header { grid-template-columns: 1fr; padding: 48px 24px 40px; }
+    .header-contact { align-items: flex-start; }
+    .contact-item { align-items: flex-start; }
+    .filter-bar, .credits-section { padding-left: 24px; padding-right: 24px; }
+    .section-header { padding-left: 24px; padding-right: 24px; }
+    .filmstrip { display: none; }
+    .credits-grid { grid-template-columns: 1fr; }
+    .header-stats { gap: 24px; }
+    footer { flex-direction: column; text-align: center; padding: 28px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="filmstrip" id="filmstrip"></div>
+
+<header>
+  <div class="header-left">
+    <div class="header-eyebrow">Television &amp; Documentary Production</div>
+    <h1 class="header-name">Maya<br><em>Neyman</em></h1>
+    <p class="header-bio">
+      Producer, cinematographer, and content strategist working across Hulu, ABC, Disney+, and Freeform. Experienced across long-form series, breaking news specials, and short-form digital, with a strong background in the kind of projects that start conversations.
+    </p>
+    <div class="header-stats">
+      <div class="stat">
+        <span class="stat-label">Credits</span>
+        <span class="stat-value">26</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Series</span>
+        <span class="stat-value">7</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Networks</span>
+        <span class="stat-value">ABC · Hulu · Disney+</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Specialties</span>
+        <span class="stat-value">Associate Producer · Cinematographer · Field · Graphics · Social</span>
+      </div>
+    </div>
+  </div>
+  <div class="header-contact">
+    <div class="contact-item">
+      <span class="contact-label">Email</span>
+      <span class="contact-value"><a href="mailto:msneyman9@gmail.com">msneyman9@gmail.com</a></span>
+    </div>
+    <div class="contact-item">
+      <span class="contact-label">Phone</span>
+      <span class="contact-value"><a href="tel:2166447688">216-644-7688</a></span>
+    </div>
+  </div>
+</header>
+
+<div class="filter-bar">
+  <span class="filter-label-text">Filter —</span>
+  <button class="filter-btn active" onclick="filter('all',this)">All</button>
+  <button class="filter-btn" onclick="filter('series',this)">Series</button>
+  <button class="filter-btn" onclick="filter('monoculture',this)">Monoculture</button>
+  <button class="filter-btn" onclick="filter('producer',this)">Producer</button>
+  <button class="filter-btn" onclick="filter('camera',this)">Camera / DP</button>
+  <button class="filter-btn" onclick="filter('field',this)">Field</button>
+  <button class="filter-btn" onclick="filter('graphics',this)">Graphics</button>
+  <button class="filter-btn" onclick="filter('social',this)">Social / Short-Form</button>
+  <button class="filter-btn" onclick="filter('special',this)">Specials</button>
+</div>
+
+<section class="credits-section">
+  <div id="tier1-header" class="section-header">
+    <span class="section-label">Series</span>
+    <div class="section-rule"></div>
+    <span class="section-sublabel">Episodic Experience</span>
+  </div>
+  <div class="credits-grid" id="tier1-grid"></div>
+
+  <div id="tier2-header" class="section-header" style="animation-delay:0.8s">
+    <span class="section-label">Monoculture</span>
+    <div class="section-rule"></div>
+    <span class="section-sublabel">Culturally Defining Projects</span>
+  </div>
+  <div class="credits-grid" id="tier2-grid"></div>
+
+  <div id="tier3-header" class="section-header" style="animation-delay:0.9s">
+    <span class="section-label">Prestige &amp; Breaking News</span>
+    <div class="section-rule"></div>
+    <span class="section-sublabel">Specials &amp; Exclusives</span>
+  </div>
+  <div class="credits-grid" id="tier3-grid"></div>
+
+  <!-- flat grid for filter view -->
+  <div class="credits-grid" id="flat-grid" style="display:none; margin-top: 24px;"></div>
+</section>
+
+<footer>
+  <span>Maya Neyman &nbsp;·&nbsp; Production Credits</span>
+  <span><a href="mailto:msneyman9@gmail.com" style="color:var(--muted);text-decoration:none;">msneyman9@gmail.com</a> &nbsp;·&nbsp; 216-644-7688</span>
+</footer>
+
+<script>
+// ── TIER 1: Series (episodic muscle) ──
+const tier1 = [
+  {
+    show: "Not Her First Rodeo",
+    logline: "From ABC News Studios, a six-part docuseries inside the adrenaline-fueled world of professional bull riding. Five remarkable women battle in and out of the arena, risking life and limb for a shot at a championship buckle, eight seconds at a time.",
+    format: "6 Episodes",
+    platforms: ["Hulu","Freeform"],
+    roles: ["Field Producer","Associate Producer","Cinematographer (shot 72% of final material)","Drone Operator","Booker","Archivist","Head of Graphics","Assistant Editor"],
+    tags: ["series","producer","camera","field","graphics"]
+  },
+  {
+    show: "Muslim Matchmaker",
+    logline: "Matchmakers Hoda and Yasmin help Muslim American clients navigate the perils of modern courtship in their search for the right partner.",
+    format: "8 Episodes",
+    platforms: ["Hulu","Disney+"],
+    roles: ["Short-Form Content Producer & Editor","Social Strategy Lead","Researcher"],
+    tags: ["series","producer","social","monoculture"]
+  },
+  {
+    show: "The Interrogation Tapes: A Special Edition of 20/20",
+    logline: "A look at the most compelling criminal cases in recent history through the lens of interrogations, unveiling the tricks detectives use to coax confessions from suspects.",
+    format: "6 Episodes",
+    platforms: ["Hulu","ABC"],
+    roles: ["Series Production Associate","Short-Form Content Producer & Editor"],
+    tags: ["series","producer","social"]
+  },
+  {
+    show: "The Secret Life of Dancing Dogs",
+    logline: "This 6-part docuseries follows handlers as they each prepare a dog-human dance duet worthy to compete at the world-famous Crufts 2023 in England.",
+    format: "6 Episodes",
+    platforms: ["Hulu","Disney+"],
+    roles: ["Production Associate","Short-Form Content Producer & Editor","Marketing Strategy"],
+    tags: ["series","producer","social"]
+  },
+  {
+    show: "Wicked Game: Devil in the Desert",
+    logline: "Hunting the mastermind of a violent abduction, authorities unravel a twisted tale of obsession during the early days of legalized pot.",
+    format: "3 Episodes",
+    platforms: ["Hulu","ABC"],
+    roles: ["Production Associate","Short-Form Content Producer & Editor"],
+    tags: ["series","producer","social"]
+  },
+  {
+    show: "Killing County",
+    logline: "In Bakersfield, California, a deadly hotel shooting makes the Ramirez family question everything they know about their town. A story of twists, corruption, and cover-up. Executive produced by Colin Kaepernick.",
+    format: "3 Episodes",
+    platforms: ["Hulu"],
+    roles: ["Production Associate"],
+    tags: ["series","producer","monoculture"]
+  },
+  {
+    show: "Pretty Baby: Brooke Shields",
+    logline: "Actor, model, and global superstar Brooke Shields\u2019 journey from a sexualized young girl to a woman who embraces her identity and voice.",
+    format: "2 Episodes",
+    platforms: ["Hulu","Disney+"],
+    roles: ["Short-Form Content Producer & Editor"],
+    tags: ["series","social","monoculture"]
+  }
+];
+
+// ── TIER 2: Monoculture specials ──
+const tier2 = [
+  {
+    show: "Brats",
+    logline: "Feature documentary following Andrew McCarthy as he reunites with fellow Brat Packers to answer: What did it mean to be part of the Brat Pack?",
+    format: "Feature",
+    platforms: ["Hulu","Disney+"],
+    roles: ["Short-Form Content Producer & Editor"],
+    tags: ["special","social","monoculture"]
+  },
+  {
+    show: "Lilith Fair: Building a Mystery : The Untold Story",
+    logline: "Drawing on over 600 hours of never-seen footage, this is the untold underdog story of Lilith Fair, the women\u2019s music festival of the late \u201990s.",
+    format: "Feature",
+    platforms: ["Hulu","Disney+"],
+    roles: ["Short-Form Content Producer & Editor"],
+    tags: ["special","social","monoculture"]
+  },
+  {
+    show: "The Golden Girls: 40 Years of Laughter and Friendship",
+    logline: "A look at the lasting cultural phenomenon of the beloved sitcom four decades after it originally premiered.",
+    format: "1-Hour Special",
+    platforms: ["Hulu","ABC"],
+    roles: ["Cinematographer","Associate Producer"],
+    tags: ["special","producer","camera","monoculture"]
+  },
+  {
+    show: "Jelly Roll: Save Me",
+    logline: "Jelly Roll, a 38-year-old rapper turned country rocker, is taking the country by storm. Unvarnished, raw, authentic : his story inspires millions to hold on, seek help, and begin to heal.",
+    format: "1-Hour Special",
+    platforms: ["Hulu","Disney+"],
+    roles: ["Production Associate","Short-Form Content Producer & Editor"],
+    tags: ["special","producer","social","monoculture"]
+  },
+  {
+    show: "Soul of a Nation Presents: Black in Vegas",
+    logline: "Exploring the history of Black entertainers in Las Vegas and celebrating those ruling the historic strip : from Usher, Mariah Carey, and Janet Jackson to Boyz II Men, Lionel Richie, and Smokey Robinson.",
+    format: "1-Hour Special",
+    platforms: ["Hulu","ABC"],
+    roles: ["Production Associate"],
+    tags: ["special","producer","monoculture"]
+  },
+  {
+    show: "PRIDE: To Be Seen : A Soul of a Nation Presentation",
+    logline: "Documenting the LGBTQ experience and examining what it means to be seen as a member of the community. Hosted by Cara Delevingne.",
+    format: "1-Hour Special",
+    platforms: ["Disney+","Hulu","ABC"],
+    roles: ["Production Associate"],
+    tags: ["special","producer","monoculture"]
+  },
+  {
+    show: "The Happiest Story on Earth: 70 Years of Disneyland",
+    logline: "Celebrate seven decades of the magic, joy and innovation behind Disneyland and its iconic attractions.",
+    format: "2-Hour Special",
+    platforms: ["Disney+","ABC"],
+    roles: ["Head of Graphics","Associate Producer","Cinematographer"],
+    tags: ["special","producer","camera","graphics","monoculture"]
+  }
+];
+
+// ── TIER 3: Prestige & breaking news ──
+const tier3 = [
+  {
+    show: "Verdict: The Diddy Trial",
+    logline: "Sean Combs was found guilty of transportation to engage in prostitution but acquitted of racketeering and sex trafficking charges. Insiders take us through the legal saga and Combs\u2019s next steps.",
+    format: "1-Hour Special",
+    platforms: ["Hulu","ABC"],
+    roles: ["Sole ABCNS Camera Operator outside the courthouse, guided footage through edit process","Act Producer"],
+    tags: ["special","camera","producer"]
+  },
+  {
+    show: "Shockwaves: The Attack on Iran",
+    logline: "The Middle East is in crisis. As Iran responds to the U.S. and Israeli airstrikes, David Muir reports on how we got here and what\u2019s next for a nation in turmoil.",
+    format: "1-Hour Special",
+    platforms: ["Hulu","ABC"],
+    roles: ["Act Producer","Associate Producer"],
+    tags: ["special","producer"]
+  },
+  {
+    show: "Jeremy Renner: The Diane Sawyer Interview",
+    logline: "Diane Sawyer\u2019s exclusive interview with actor Jeremy Renner : his first since his life-threatening New Year\u2019s Day accident. Renner opens up about the harrowing details and his ongoing recovery.",
+    format: "1-Hour Special",
+    platforms: ["Disney+","ABC"],
+    roles: ["Production Associate"],
+    tags: ["special","producer"]
+  },
+  {
+    show: "Truth and Lies: Who Killed JFK?",
+    logline: "A deep investigation into one of history\u2019s most enduring mysteries : the assassination of President John F. Kennedy.",
+    format: "1-Hour Special",
+    platforms: ["ABC"],
+    roles: ["Cinematographer","Drone Operator","Production Associate"],
+    tags: ["special","camera","producer"]
+  },
+  {
+    show: "The Rob Reiner Story: A Hollywood Tragedy",
+    logline: "Exploring the latest developments in the deaths of legendary actor and director Rob Reiner and his wife, Michele Singer Reiner, and the legacy they leave behind.",
+    format: "1-Hour Special",
+    platforms: ["Hulu","ABC"],
+    roles: ["Associate Producer"],
+    tags: ["special","producer"]
+  },
+  {
+    show: "House of Grucci",
+    logline: "\u201cAmerica\u2019s First Family of Fireworks\u201d has lit up the night skies for six generations. Intimate access to personal moments and professional triumphs : where passion and personalities sizzle as bright as their fireworks.",
+    format: "1-Hour Special",
+    platforms: ["Hulu"],
+    roles: ["Production Associate","Camera Operator"],
+    tags: ["special","producer","camera"]
+  },
+  {
+    show: "Sins of the Parents: The Crumbley Trials",
+    logline: "Go behind the scenes of the historic case against the Crumbley parents, charged in connection with their son\u2019s school shooting in Oxford, Michigan.",
+    format: "1-Hour Special",
+    platforms: ["Hulu"],
+    roles: ["Production Associate"],
+    tags: ["special","producer"]
+  },
+  {
+    show: "After The Blast: The Will To Survive",
+    logline: "Chronicles ABC News correspondent Bob Woodruff\u2019s emotional journey back to Iraq, where a split-second event changed his life forever.",
+    format: "1-Hour Special",
+    platforms: ["Hulu","ABC"],
+    roles: ["Production Associate"],
+    tags: ["special","producer"]
+  },
+  {
+    show: "President Trump: The First 100 Days",
+    logline: "Terry Moran interviews President Donald Trump in the Oval Office.",
+    format: "1-Hour Special",
+    platforms: ["Hulu","ABC"],
+    roles: ["Production Associate"],
+    tags: ["special","producer"]
+  },
+  {
+    show: "The Ivana Trump Story: The First Wife",
+    logline: "There is the First Lady. And then there is the First Wife. Exploring the life and legacy of Ivana Trump : devoted mother, businesswoman, and glamour queen whose eye for branding helped build an empire.",
+    format: "1-Hour Special",
+    platforms: ["Hulu"],
+    roles: ["Production Associate"],
+    tags: ["special","producer"]
+  },
+  {
+    show: "Nightline",
+    logline: "\u201cTall Tour\u201d founder Tyler Bergantino says his meetups provide a community that tall people didn\u2019t even know they needed.",
+    format: "Package",
+    platforms: ["Hulu","ABC"],
+    roles: ["Field Producer","Cinematographer"],
+    tags: ["special","field","camera","producer"]
+  },
+  {
+    show: "The Year 2023",
+    logline: "Celebrities, comedians, newsmakers and the ABC News team look back on the biggest news and pop culture moments of 2023 in this annual special.",
+    format: "1-Hour Special",
+    platforms: ["Hulu","ABC"],
+    roles: ["Production Associate"],
+    tags: ["special","producer"]
+  }
+];
+
+const allCredits = [...tier1, ...tier2, ...tier3];
+
+function getPlatformClass(p) {
+  const l = p.toLowerCase();
+  if (l === 'hulu') return 'hulu';
+  if (l === 'abc') return 'abc';
+  if (l.includes('disney')) return 'disney';
+  if (l === 'freeform') return 'freeform';
+  if (l === 'netflix') return 'netflix';
+  return '';
+}
+
+function makeCard(c, i, delay, badge) {
+  const card = document.createElement('div');
+  card.className = 'credit-card' + (badge ? ' featured' : '');
+  const platforms = c.platforms.map(p =>
+    `<span class="platform-tag ${getPlatformClass(p)}">${p}</span>`
+  ).join('');
+  const roles = c.roles.map(r =>
+    `<div class="card-role">${r}</div>`
+  ).join('');
+  const badgeHtml = badge ? `<span class="card-tier-badge">${badge}</span>` : '';
+  card.innerHTML = `
+    <div class="card-number">No.&nbsp;${String(i+1).padStart(2,'0')} ${badgeHtml}</div>
+    <div class="card-show">${c.show}</div>
+    <div class="card-logline">${c.logline}</div>
+    <div class="card-roles">${roles}</div>
+    <div class="card-footer">
+      <div class="card-platform">${platforms}</div>
+      <span class="card-format">${c.format}</span>
+    </div>
+  `;
+  setTimeout(() => card.classList.add('visible'), delay);
+  return card;
+}
+
+function buildTiered() {
+  ['tier1-header','tier2-header','tier3-header'].forEach(id => {
+    document.getElementById(id).style.display = '';
+  });
+  document.getElementById('flat-grid').style.display = 'none';
+
+  const g1 = document.getElementById('tier1-grid');
+  const g2 = document.getElementById('tier2-grid');
+  const g3 = document.getElementById('tier3-grid');
+  g1.innerHTML = ''; g2.innerHTML = ''; g3.innerHTML = '';
+
+  tier1.forEach((c,i) => g1.appendChild(makeCard(c, i, i*40, 'Series')));
+  tier2.forEach((c,i) => g2.appendChild(makeCard(c, i, i*35, 'Monoculture')));
+  tier3.forEach((c,i) => g3.appendChild(makeCard(c, i, i*30, null)));
+}
+
+function filter(tag, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  if (tag === 'all') {
+    buildTiered();
+    return;
+  }
+
+  ['tier1-header','tier2-header','tier3-header'].forEach(id => {
+    document.getElementById(id).style.display = 'none';
+  });
+  document.getElementById('tier1-grid').innerHTML = '';
+  document.getElementById('tier2-grid').innerHTML = '';
+  document.getElementById('tier3-grid').innerHTML = '';
+
+  const flat = document.getElementById('flat-grid');
+  flat.style.display = 'grid';
+  flat.innerHTML = '';
+
+  const filtered = allCredits.filter(c => c.tags.includes(tag));
+  filtered.forEach((c,i) => flat.appendChild(makeCard(c, i, i*35, null)));
+}
+
+// Filmstrip
+const strip = document.getElementById('filmstrip');
+for (let i = 0; i < 120; i++) {
+  const h = document.createElement('div');
+  h.className = 'filmstrip-hole';
+  strip.appendChild(h);
+}
+
+buildTiered();
+</script>
+</body>
+</html>
