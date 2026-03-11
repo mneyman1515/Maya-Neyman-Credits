@@ -227,7 +227,8 @@
   .credit-card.featured {
     border-color: rgba(201,168,76,0.12);
   }
-  .credit-card.featured .card-show {
+  .credit-card.featured .card-show,
+  .credit-card.featured .card-show-link {
     font-size: 26px;
   }
 
@@ -258,6 +259,32 @@
     line-height: 1.15;
     margin-bottom: 12px;
     letter-spacing: -0.01em;
+  }
+  .card-show-link {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--cream);
+    line-height: 1.15;
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    cursor: pointer;
+  }
+  .card-show-link:hover {
+    color: var(--gold);
+  }
+  .card-show-link::after {
+    content: ' ↗';
+    font-size: 14px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    color: var(--gold);
+  }
+  .card-show-link:hover::after {
+    opacity: 1;
   }
   .card-logline {
     font-family: 'Cormorant Garamond', serif;
@@ -398,7 +425,7 @@
   <div class="header-contact">
     <div class="contact-item">
       <span class="contact-label">Email</span>
-      <span class="contact-value"><a href="mailto:msneyman9@gmail.com">msneyman9@gmail.com</a></span>
+      <span class="contact-value"><a href="/cdn-cgi/l/email-protection#6c011f020915010d02552c0b010d0500420f0301"><span class="__cf_email__" data-cfemail="a6cbd5c8c3dfcbc7c89fe6c1cbc7cfca88c5c9cb">[email&#160;protected]</span></a></span>
     </div>
     <div class="contact-item">
       <span class="contact-label">Phone</span>
@@ -448,14 +475,15 @@
 
 <footer>
   <span>Maya Neyman &nbsp;·&nbsp; Production Credits</span>
-  <span><a href="mailto:msneyman9@gmail.com" style="color:var(--muted);text-decoration:none;">msneyman9@gmail.com</a> &nbsp;·&nbsp; 216-644-7688</span>
+  <span><a href="/cdn-cgi/l/email-protection#274a5449425e4a46491e67404a464e4b0944484a" style="color:var(--muted);text-decoration:none;"><span class="__cf_email__" data-cfemail="e8859b868d91858986d1a88f85898184c68b8785">[email&#160;protected]</span></a> &nbsp;·&nbsp; 216-644-7688</span>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ── TIER 1: Series (episodic muscle) ──
 const tier1 = [
   {
     show: "Not Her First Rodeo",
+    link: "https://youtu.be/CmWcOcxaEsI?si=j8NzeDv89gUMOVuO",
     logline: "From ABC News Studios, a six-part docuseries inside the adrenaline-fueled world of professional bull riding. Five remarkable women battle in and out of the arena, risking life and limb for a shot at a championship buckle, eight seconds at a time.",
     format: "6 Episodes",
     platforms: ["Hulu","Freeform"],
@@ -464,6 +492,7 @@ const tier1 = [
   },
   {
     show: "Muslim Matchmaker",
+    link: "https://youtu.be/0yY0XRmRS-c?si=FHV13VQ8EN7CRRQX",
     logline: "Matchmakers Hoda and Yasmin help Muslim American clients navigate the perils of modern courtship in their search for the right partner.",
     format: "8 Episodes",
     platforms: ["Hulu","Disney+"],
@@ -472,6 +501,7 @@ const tier1 = [
   },
   {
     show: "The Interrogation Tapes: A Special Edition of 20/20",
+    link: "https://youtu.be/OFzx3A2PWp0?si=_83BNjYNJNWisSQV",
     logline: "A look at the most compelling criminal cases in recent history through the lens of interrogations, unveiling the tricks detectives use to coax confessions from suspects.",
     format: "6 Episodes",
     platforms: ["Hulu","ABC"],
@@ -480,6 +510,7 @@ const tier1 = [
   },
   {
     show: "The Secret Life of Dancing Dogs",
+    link: "https://youtu.be/lqGffeu-10U?si=s9p5fJNWTwHAZmID",
     logline: "This 6-part docuseries follows handlers as they each prepare a dog-human dance duet worthy to compete at the world-famous Crufts 2023 in England.",
     format: "6 Episodes",
     platforms: ["Hulu","Disney+"],
@@ -488,6 +519,7 @@ const tier1 = [
   },
   {
     show: "Wicked Game: Devil in the Desert",
+    link: "https://youtu.be/ie-ZWnOPmwU?si=ACXBjIuO1A-hpEyo",
     logline: "Hunting the mastermind of a violent abduction, authorities unravel a twisted tale of obsession during the early days of legalized pot.",
     format: "3 Episodes",
     platforms: ["Hulu","ABC"],
@@ -496,6 +528,7 @@ const tier1 = [
   },
   {
     show: "Killing County",
+    link: "https://youtu.be/NEC1_fV6wgo?si=HMo9HxD6SvHtC2eP",
     logline: "In Bakersfield, California, a deadly hotel shooting makes the Ramirez family question everything they know about their town. A story of twists, corruption, and cover-up. Executive produced by Colin Kaepernick.",
     format: "3 Episodes",
     platforms: ["Hulu"],
@@ -504,6 +537,7 @@ const tier1 = [
   },
   {
     show: "Pretty Baby: Brooke Shields",
+    link: "https://youtu.be/x7KedT6uvus?si=i21W6SgFhKnFPl4d",
     logline: "Actor, model, and global superstar Brooke Shields\u2019 journey from a sexualized young girl to a woman who embraces her identity and voice.",
     format: "2 Episodes",
     platforms: ["Hulu","Disney+"],
@@ -516,6 +550,7 @@ const tier1 = [
 const tier2 = [
   {
     show: "Brats",
+    link: "https://youtu.be/MxVNQkRM5Qw?si=1dwslYkwIK6G5lG-",
     logline: "Feature documentary following Andrew McCarthy as he reunites with fellow Brat Packers to answer: What did it mean to be part of the Brat Pack?",
     format: "Feature",
     platforms: ["Hulu","Disney+"],
@@ -524,6 +559,7 @@ const tier2 = [
   },
   {
     show: "Lilith Fair: Building a Mystery : The Untold Story",
+    link: "https://youtu.be/wJAh2njqK-M?si=qXaqsXSkkSIVBoNF",
     logline: "Drawing on over 600 hours of never-seen footage, this is the untold underdog story of Lilith Fair, the women\u2019s music festival of the late \u201990s.",
     format: "Feature",
     platforms: ["Hulu","Disney+"],
@@ -532,6 +568,7 @@ const tier2 = [
   },
   {
     show: "The Golden Girls: 40 Years of Laughter and Friendship",
+    link: "https://youtu.be/nP4MWSoK26E?si=7pMUzZMex_myK6xm",
     logline: "A look at the lasting cultural phenomenon of the beloved sitcom four decades after it originally premiered.",
     format: "1-Hour Special",
     platforms: ["Hulu","ABC"],
@@ -540,6 +577,7 @@ const tier2 = [
   },
   {
     show: "Jelly Roll: Save Me",
+    link: "https://youtu.be/v0FBM6orM9Y?si=CtIvpJORFDp0BVYH",
     logline: "Jelly Roll, a 38-year-old rapper turned country rocker, is taking the country by storm. Unvarnished, raw, authentic : his story inspires millions to hold on, seek help, and begin to heal.",
     format: "1-Hour Special",
     platforms: ["Hulu","Disney+"],
@@ -548,6 +586,7 @@ const tier2 = [
   },
   {
     show: "Soul of a Nation Presents: Black in Vegas",
+    link: "https://youtu.be/L3otC7O0iaY?si=NuaX96NM9KqjZoie",
     logline: "Exploring the history of Black entertainers in Las Vegas and celebrating those ruling the historic strip : from Usher, Mariah Carey, and Janet Jackson to Boyz II Men, Lionel Richie, and Smokey Robinson.",
     format: "1-Hour Special",
     platforms: ["Hulu","ABC"],
@@ -556,6 +595,7 @@ const tier2 = [
   },
   {
     show: "PRIDE: To Be Seen : A Soul of a Nation Presentation",
+    link: "https://youtu.be/n0CxlXeuduI?si=DtBmVYb9zj9c2Zho",
     logline: "Documenting the LGBTQ experience and examining what it means to be seen as a member of the community. Hosted by Cara Delevingne.",
     format: "1-Hour Special",
     platforms: ["Disney+","Hulu","ABC"],
@@ -564,6 +604,7 @@ const tier2 = [
   },
   {
     show: "The Happiest Story on Earth: 70 Years of Disneyland",
+    link: "https://youtu.be/zmGUvmT76sw?si=mRtOS1y6VWtv6kB-",
     logline: "Celebrate seven decades of the magic, joy and innovation behind Disneyland and its iconic attractions.",
     format: "2-Hour Special",
     platforms: ["Disney+","ABC"],
@@ -576,6 +617,7 @@ const tier2 = [
 const tier3 = [
   {
     show: "Verdict: The Diddy Trial",
+    link: "https://abc.com/movies-and-specials/a38dc35a-fae1-409d-8aa0-8e84ff12aea6",
     logline: "Sean Combs was found guilty of transportation to engage in prostitution but acquitted of racketeering and sex trafficking charges. Insiders take us through the legal saga and Combs\u2019s next steps.",
     format: "1-Hour Special",
     platforms: ["Hulu","ABC"],
@@ -584,6 +626,7 @@ const tier3 = [
   },
   {
     show: "Shockwaves: The Attack on Iran",
+    link: "https://youtu.be/KgD04YDl8bM?si=euCp3jkOzFy-jhPO",
     logline: "The Middle East is in crisis. As Iran responds to the U.S. and Israeli airstrikes, David Muir reports on how we got here and what\u2019s next for a nation in turmoil.",
     format: "1-Hour Special",
     platforms: ["Hulu","ABC"],
@@ -592,6 +635,7 @@ const tier3 = [
   },
   {
     show: "Jeremy Renner: The Diane Sawyer Interview",
+    link: "https://youtu.be/j4-HGKjSdvA?si=IyajFvF7mnkMF9EI",
     logline: "Diane Sawyer\u2019s exclusive interview with actor Jeremy Renner : his first since his life-threatening New Year\u2019s Day accident. Renner opens up about the harrowing details and his ongoing recovery.",
     format: "1-Hour Special",
     platforms: ["Disney+","ABC"],
@@ -600,6 +644,7 @@ const tier3 = [
   },
   {
     show: "Truth and Lies: Who Killed JFK?",
+    link: "https://youtu.be/ZDkVeOXkhCg?si=WYM-WDICNsLE3WTf",
     logline: "A deep investigation into one of history\u2019s most enduring mysteries : the assassination of President John F. Kennedy.",
     format: "1-Hour Special",
     platforms: ["ABC"],
@@ -608,6 +653,7 @@ const tier3 = [
   },
   {
     show: "The Rob Reiner Story: A Hollywood Tragedy",
+    link: "https://www.hulu.com/series/the-rob-reiner-story-a-hollywood-tragedy-abc-news-special-54eabbea-9847-466c-9047-8e5b01477782",
     logline: "Exploring the latest developments in the deaths of legendary actor and director Rob Reiner and his wife, Michele Singer Reiner, and the legacy they leave behind.",
     format: "1-Hour Special",
     platforms: ["Hulu","ABC"],
@@ -616,6 +662,7 @@ const tier3 = [
   },
   {
     show: "House of Grucci",
+    link: "https://youtu.be/QAfJPFtPEdg?si=OUb_cxmZmiGqTp-q",
     logline: "\u201cAmerica\u2019s First Family of Fireworks\u201d has lit up the night skies for six generations. Intimate access to personal moments and professional triumphs : where passion and personalities sizzle as bright as their fireworks.",
     format: "1-Hour Special",
     platforms: ["Hulu"],
@@ -624,6 +671,7 @@ const tier3 = [
   },
   {
     show: "Sins of the Parents: The Crumbley Trials",
+    link: "https://youtu.be/S7X7GkxHp6w?si=NErzCtwDWN2j6hqd",
     logline: "Go behind the scenes of the historic case against the Crumbley parents, charged in connection with their son\u2019s school shooting in Oxford, Michigan.",
     format: "1-Hour Special",
     platforms: ["Hulu"],
@@ -632,6 +680,7 @@ const tier3 = [
   },
   {
     show: "After The Blast: The Will To Survive",
+    link: "https://youtu.be/ga-HVomsY_U?si=xVjscxaXD6LH0Ihr",
     logline: "Chronicles ABC News correspondent Bob Woodruff\u2019s emotional journey back to Iraq, where a split-second event changed his life forever.",
     format: "1-Hour Special",
     platforms: ["Hulu","ABC"],
@@ -640,6 +689,7 @@ const tier3 = [
   },
   {
     show: "President Trump: The First 100 Days",
+    link: "https://youtu.be/GBwCUPttprw?si=ozmG4d1Xlv_aWOgf",
     logline: "Terry Moran interviews President Donald Trump in the Oval Office.",
     format: "1-Hour Special",
     platforms: ["Hulu","ABC"],
@@ -648,6 +698,7 @@ const tier3 = [
   },
   {
     show: "The Ivana Trump Story: The First Wife",
+    link: "https://www.hulu.com/series/the-ivana-trump-story-the-first-wife-ec3dc62b-0953-4649-83a2-824f2af72fbc",
     logline: "There is the First Lady. And then there is the First Wife. Exploring the life and legacy of Ivana Trump : devoted mother, businesswoman, and glamour queen whose eye for branding helped build an empire.",
     format: "1-Hour Special",
     platforms: ["Hulu"],
@@ -656,6 +707,7 @@ const tier3 = [
   },
   {
     show: "Nightline",
+    link: "https://youtu.be/AWeFEgvNKMQ?si=dx_FbHtFKN1_jSyD",
     logline: "\u201cTall Tour\u201d founder Tyler Bergantino says his meetups provide a community that tall people didn\u2019t even know they needed.",
     format: "Package",
     platforms: ["Hulu","ABC"],
@@ -664,6 +716,7 @@ const tier3 = [
   },
   {
     show: "The Year 2023",
+    link: "https://www.hulu.com/series/34a35b59-e84e-4fbe-ac1f-48f95e83a811",
     logline: "Celebrities, comedians, newsmakers and the ABC News team look back on the biggest news and pop culture moments of 2023 in this annual special.",
     format: "1-Hour Special",
     platforms: ["Hulu","ABC"],
@@ -694,9 +747,12 @@ function makeCard(c, i, delay, badge) {
     `<div class="card-role">${r}</div>`
   ).join('');
   const badgeHtml = badge ? `<span class="card-tier-badge">${badge}</span>` : '';
+  const showHtml = c.link
+    ? `<a class="card-show card-show-link" href="${c.link}" target="_blank" rel="noopener noreferrer">${c.show}</a>`
+    : `<div class="card-show">${c.show}</div>`;
   card.innerHTML = `
     <div class="card-number">No.&nbsp;${String(i+1).padStart(2,'0')} ${badgeHtml}</div>
-    <div class="card-show">${c.show}</div>
+    ${showHtml}
     <div class="card-logline">${c.logline}</div>
     <div class="card-roles">${roles}</div>
     <div class="card-footer">
@@ -744,16 +800,9 @@ function filter(tag, btn) {
   flat.style.display = 'grid';
   flat.innerHTML = '';
 
-  const filtered = allCredits.filter(c => c.tags.includes(tag));
-  filtered.forEach((c,i) => flat.appendChild(makeCard(c, i, i*35, null)));
-}
-
-// Filmstrip
-const strip = document.getElementById('filmstrip');
-for (let i = 0; i < 120; i++) {
-  const h = document.createElement('div');
-  h.className = 'filmstrip-hole';
-  strip.appendChild(h);
+  const allCredits = [...tier1, ...tier2, ...tier3];
+  const filtered = allCredits.filter(c => c.tags && c.tags.includes(tag));
+  filtered.forEach((c, i) => flat.appendChild(makeCard(c, i, i * 35, null)));
 }
 
 buildTiered();
