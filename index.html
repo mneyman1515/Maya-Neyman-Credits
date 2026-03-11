@@ -409,7 +409,9 @@
     letter-spacing: -0.01em;
   }
   .card-show-link {
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
     font-family: 'Cormorant Garamond', serif;
     font-size: 22px;
     font-weight: 400;
@@ -421,7 +423,7 @@
     transition: color 0.2s ease;
     cursor: pointer;
     background-image: linear-gradient(rgba(201,168,76,0.3), rgba(201,168,76,0.3));
-    background-size: 100% 1px;
+    background-size: calc(100% - 60px) 1px;
     background-position: 0 92%;
     background-repeat: no-repeat;
   }
@@ -429,16 +431,19 @@
     color: var(--gold);
     background-image: linear-gradient(var(--gold), var(--gold));
   }
-  .card-show-link::after {
-    content: ' ↗';
-    font-size: 13px;
-    opacity: 0.45;
-    transition: opacity 0.2s ease;
+  .watch-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
     color: var(--gold);
+    border: 1px solid rgba(201,168,76,0.4);
+    padding: 3px 8px;
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+    flex-shrink: 0;
   }
-  .card-show-link:hover::after {
-    opacity: 1;
-  }
+  .card-show-link:hover .watch-badge { opacity: 1; }
   .card-logline {
     font-family: 'Cormorant Garamond', serif;
     font-size: 13.5px;
@@ -593,7 +598,7 @@
     <div class="header-contact">
       <div class="contact-item">
         <span class="contact-label">Email</span>
-        <span class="contact-value"><a href="mailto:maya.neyman@gmail.com">maya.neyman@gmail.com</a></span>
+        <span class="contact-value"><a href="mailto:msneyman9@gmail.com">msneyman9@gmail.com</a></span>
       </div>
       <div class="contact-item">
         <span class="contact-label">Phone</span>
@@ -673,7 +678,7 @@
 
 <footer>
   <span>Maya Neyman &nbsp;·&nbsp; Production Credits</span>
-  <span><a href="mailto:maya.neyman@gmail.com" style="color:var(--muted);text-decoration:none;">maya.neyman@gmail.com</a> &nbsp;·&nbsp; 216-644-7688</span>
+  <span><a href="mailto:msneyman9@gmail.com" style="color:var(--muted);text-decoration:none;">msneyman9@gmail.com</a> &nbsp;·&nbsp; 216-644-7688</span>
 </footer>
 
 <script>
@@ -957,7 +962,7 @@ function makeCard(c, delay) {
     `<div class="card-role">${r}</div>`
   ).join('');
   const showHtml = c.link
-    ? `<a class="card-show card-show-link" href="${c.link}" target="_blank" rel="noopener noreferrer">${c.show}</a>`
+    ? `<a class="card-show card-show-link" href="${c.link}" target="_blank" rel="noopener noreferrer">${c.show}<span class="watch-badge">Watch</span></a>`
     : `<div class="card-show">${c.show}</div>`;
   card.innerHTML = `
     ${showHtml}
