@@ -78,12 +78,12 @@
       ),
       /* Left-heavy directional scrim — like flagging a key light */
       linear-gradient(90deg,
-        rgba(10,9,6,0.88) 0%,
-        rgba(10,9,6,0.75) 15%,
-        rgba(10,9,6,0.45) 35%,
-        rgba(10,9,6,0.08) 55%,
+        rgba(10,9,6,0.95) 0%,
+        rgba(10,9,6,0.88) 12%,
+        rgba(10,9,6,0.65) 30%,
+        rgba(10,9,6,0.25) 50%,
         rgba(10,9,6,0.0) 70%,
-        rgba(10,9,6,0.15) 100%
+        rgba(10,9,6,0.12) 100%
       );
     pointer-events: none;
   }
@@ -259,14 +259,19 @@
   .filter-bar {
     padding: 20px 60px;
     display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    align-items: center;
+    flex-direction: column;
+    gap: 14px;
     border-bottom: 1px solid rgba(255,255,255,0.06);
     opacity: 0;
     animation: fadeUp 0.8s ease forwards 0.65s;
   }
-  .filter-label-text { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); margin-right: 8px; }
+  .filter-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .filter-label-text { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); margin-right: 4px; min-width: 70px; }
   .filter-btn {
     background: transparent;
     border: 1px solid rgba(201,168,76,0.25);
@@ -324,34 +329,6 @@
   }
   .credit-card:hover::before { height: 100%; }
   .credit-card:hover { background: var(--dark3); border-color: rgba(201,168,76,0.15); }
-
-  /* Featured card style for tier 1 */
-  .credit-card.featured {
-    border-color: rgba(201,168,76,0.12);
-  }
-  .credit-card.featured .card-show,
-  .credit-card.featured .card-show-link {
-    font-size: 26px;
-  }
-
-  .card-number {
-    font-size: 9px;
-    letter-spacing: 0.3em;
-    color: var(--muted);
-    margin-bottom: 14px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .card-number::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.06); }
-  .card-tier-badge {
-    font-size: 8px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    padding: 2px 7px;
-    border: 1px solid rgba(201,168,76,0.4);
-    color: var(--gold);
-  }
 
   .card-show {
     font-family: 'Cormorant Garamond', serif;
@@ -487,11 +464,13 @@
     .header-contact { align-items: flex-start; }
     .contact-item { align-items: flex-start; }
     .filter-bar, .credits-section { padding-left: 24px; padding-right: 24px; }
+    .filter-label-text { min-width: auto; width: 100%; margin-bottom: 2px; }
     .section-header { padding-left: 24px; padding-right: 24px; }
     .filmstrip { display: none; }
     .credits-grid { grid-template-columns: 1fr; }
     .header-stats { gap: 24px; }
     footer { flex-direction: column; text-align: center; padding: 28px 24px; }
+    .scroll-cue { display: none; }
   }
 </style>
 </head>
@@ -558,39 +537,45 @@
 </div>
 
 <div class="filter-bar">
-  <span class="filter-label-text">Filter —</span>
-  <button class="filter-btn active" onclick="filter('all',this)">All</button>
-  <button class="filter-btn" onclick="filter('series',this)">Series</button>
-  <button class="filter-btn" onclick="filter('monoculture',this)">Monoculture</button>
-  <button class="filter-btn" onclick="filter('producer',this)">Producer</button>
-  <button class="filter-btn" onclick="filter('camera',this)">Camera / DP</button>
-  <button class="filter-btn" onclick="filter('field',this)">Field</button>
-  <button class="filter-btn" onclick="filter('graphics',this)">Graphics</button>
-  <button class="filter-btn" onclick="filter('social',this)">Social / Short-Form</button>
-  <button class="filter-btn" onclick="filter('special',this)">Specials</button>
+  <div class="filter-row">
+    <span class="filter-label-text">Platform</span>
+    <button class="filter-btn active" data-group="platform" data-value="all" onclick="setFilter('platform','all',this)">All</button>
+    <button class="filter-btn" data-group="platform" data-value="hulu" onclick="setFilter('platform','hulu',this)">Hulu</button>
+    <button class="filter-btn" data-group="platform" data-value="disney" onclick="setFilter('platform','disney',this)">Disney+</button>
+    <button class="filter-btn" data-group="platform" data-value="abc" onclick="setFilter('platform','abc',this)">ABC</button>
+    <button class="filter-btn" data-group="platform" data-value="freeform" onclick="setFilter('platform','freeform',this)">Freeform</button>
+  </div>
+  <div class="filter-row">
+    <span class="filter-label-text">Format</span>
+    <button class="filter-btn active" data-group="format" data-value="all" onclick="setFilter('format','all',this)">All</button>
+    <button class="filter-btn" data-group="format" data-value="series" onclick="setFilter('format','series',this)">Series</button>
+    <button class="filter-btn" data-group="format" data-value="feature" onclick="setFilter('format','feature',this)">Features</button>
+  </div>
+  <div class="filter-row">
+    <span class="filter-label-text">Role</span>
+    <button class="filter-btn active" data-group="role" data-value="all" onclick="setFilter('role','all',this)">All</button>
+    <button class="filter-btn" data-group="role" data-value="producer" onclick="setFilter('role','producer',this)">Producer</button>
+    <button class="filter-btn" data-group="role" data-value="camera" onclick="setFilter('role','camera',this)">Camera / DP</button>
+    <button class="filter-btn" data-group="role" data-value="field" onclick="setFilter('role','field',this)">Field</button>
+    <button class="filter-btn" data-group="role" data-value="graphics" onclick="setFilter('role','graphics',this)">Graphics</button>
+    <button class="filter-btn" data-group="role" data-value="social" onclick="setFilter('role','social',this)">Social</button>
+  </div>
 </div>
 
 <section class="credits-section">
   <div id="tier1-header" class="section-header">
     <span class="section-label">Series</span>
     <div class="section-rule"></div>
-    <span class="section-sublabel">Episodic Experience</span>
+    <span class="section-sublabel">Episodic Work</span>
   </div>
   <div class="credits-grid" id="tier1-grid"></div>
 
   <div id="tier2-header" class="section-header" style="animation-delay:0.8s">
-    <span class="section-label">Monoculture</span>
+    <span class="section-label">Features</span>
     <div class="section-rule"></div>
-    <span class="section-sublabel">Culturally Defining Projects</span>
+    <span class="section-sublabel">Specials · Prestige · Breaking News</span>
   </div>
   <div class="credits-grid" id="tier2-grid"></div>
-
-  <div id="tier3-header" class="section-header" style="animation-delay:0.9s">
-    <span class="section-label">Prestige &amp; Breaking News</span>
-    <div class="section-rule"></div>
-    <span class="section-sublabel">Specials &amp; Exclusives</span>
-  </div>
-  <div class="credits-grid" id="tier3-grid"></div>
 
   <!-- flat grid for filter view -->
   <div class="credits-grid" id="flat-grid" style="display:none; margin-top: 24px;"></div>
@@ -669,7 +654,7 @@ const tier1 = [
   }
 ];
 
-// ── TIER 2: Monoculture specials ──
+// ── TIER 2: Features ──
 const tier2 = [
   {
     show: "Brats",
@@ -848,7 +833,13 @@ const tier3 = [
   }
 ];
 
-const allCredits = [...tier1, ...tier2, ...tier3];
+// Tag each item with a type for format filtering
+tier1.forEach(c => c.type = 'series');
+tier2.forEach(c => c.type = 'feature');
+tier3.forEach(c => c.type = 'feature');
+
+const features = [...tier2, ...tier3];
+const allCredits = [...tier1, ...features];
 
 function getPlatformClass(p) {
   const l = p.toLowerCase();
@@ -860,21 +851,25 @@ function getPlatformClass(p) {
   return '';
 }
 
-function makeCard(c, i, delay, badge) {
+function platformKey(p) {
+  const l = p.toLowerCase();
+  if (l.includes('disney')) return 'disney';
+  return l;
+}
+
+function makeCard(c, delay) {
   const card = document.createElement('div');
-  card.className = 'credit-card' + (badge ? ' featured' : '');
+  card.className = 'credit-card';
   const platforms = c.platforms.map(p =>
     `<span class="platform-tag ${getPlatformClass(p)}">${p}</span>`
   ).join('');
   const roles = c.roles.map(r =>
     `<div class="card-role">${r}</div>`
   ).join('');
-  const badgeHtml = badge ? `<span class="card-tier-badge">${badge}</span>` : '';
   const showHtml = c.link
     ? `<a class="card-show card-show-link" href="${c.link}" target="_blank" rel="noopener noreferrer">${c.show}</a>`
     : `<div class="card-show">${c.show}</div>`;
   card.innerHTML = `
-    <div class="card-number">No.&nbsp;${String(i+1).padStart(2,'0')} ${badgeHtml}</div>
     ${showHtml}
     <div class="card-logline">${c.logline}</div>
     <div class="card-roles">${roles}</div>
@@ -887,45 +882,98 @@ function makeCard(c, i, delay, badge) {
   return card;
 }
 
-function buildTiered() {
-  ['tier1-header','tier2-header','tier3-header'].forEach(id => {
-    document.getElementById(id).style.display = '';
-  });
-  document.getElementById('flat-grid').style.display = 'none';
+// ── Combinable filter state ──
+const activeFilters = { platform: 'all', format: 'all', role: 'all' };
 
-  const g1 = document.getElementById('tier1-grid');
-  const g2 = document.getElementById('tier2-grid');
-  const g3 = document.getElementById('tier3-grid');
-  g1.innerHTML = ''; g2.innerHTML = ''; g3.innerHTML = '';
-
-  tier1.forEach((c,i) => g1.appendChild(makeCard(c, i, i*40, 'Series')));
-  tier2.forEach((c,i) => g2.appendChild(makeCard(c, i, i*35, 'Monoculture')));
-  tier3.forEach((c,i) => g3.appendChild(makeCard(c, i, i*30, null)));
+function setFilter(group, value, btn) {
+  activeFilters[group] = value;
+  // Update active state within this group
+  document.querySelectorAll(`.filter-btn[data-group="${group}"]`).forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  applyFilters();
 }
 
-function filter(tag, btn) {
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
+function applyFilters() {
+  const { platform, format, role } = activeFilters;
+  const isAllFilters = platform === 'all' && format === 'all' && role === 'all';
 
-  if (tag === 'all') {
-    buildTiered();
+  if (isAllFilters) {
+    buildTiered(allCredits);
     return;
   }
 
-  ['tier1-header','tier2-header','tier3-header'].forEach(id => {
+  // Filter the full list
+  const filtered = allCredits.filter(c => {
+    if (platform !== 'all') {
+      const hasPlatform = c.platforms.some(p => platformKey(p) === platform);
+      if (!hasPlatform) return false;
+    }
+    if (format !== 'all') {
+      if (c.type !== format) return false;
+    }
+    if (role !== 'all') {
+      if (!c.tags || !c.tags.includes(role)) return false;
+    }
+    return true;
+  });
+
+  // If only format is "all" and no role filter, keep tiered layout
+  if (format === 'all' && role === 'all') {
+    buildTiered(filtered);
+  } else if (format === 'all') {
+    // Role filter active — check if results span both types
+    const hasSeries = filtered.some(c => c.type === 'series');
+    const hasFeatures = filtered.some(c => c.type === 'feature');
+    if (hasSeries && hasFeatures) {
+      buildTiered(filtered);
+    } else {
+      buildFlat(filtered);
+    }
+  } else {
+    buildFlat(filtered);
+  }
+}
+
+function buildTiered(items) {
+  const seriesItems = (items || allCredits).filter(c => c.type === 'series');
+  const featureItems = (items || allCredits).filter(c => c.type === 'feature');
+
+  const t1h = document.getElementById('tier1-header');
+  const t2h = document.getElementById('tier2-header');
+  const g1 = document.getElementById('tier1-grid');
+  const g2 = document.getElementById('tier2-grid');
+  const flat = document.getElementById('flat-grid');
+
+  flat.style.display = 'none';
+  flat.innerHTML = '';
+
+  // Show/hide sections based on content
+  t1h.style.display = seriesItems.length ? '' : 'none';
+  g1.innerHTML = '';
+  seriesItems.forEach((c, i) => g1.appendChild(makeCard(c, i * 40)));
+
+  t2h.style.display = featureItems.length ? '' : 'none';
+  g2.innerHTML = '';
+  featureItems.forEach((c, i) => g2.appendChild(makeCard(c, i * 30)));
+}
+
+function buildFlat(items) {
+  ['tier1-header','tier2-header'].forEach(id => {
     document.getElementById(id).style.display = 'none';
   });
   document.getElementById('tier1-grid').innerHTML = '';
   document.getElementById('tier2-grid').innerHTML = '';
-  document.getElementById('tier3-grid').innerHTML = '';
 
   const flat = document.getElementById('flat-grid');
   flat.style.display = 'grid';
   flat.innerHTML = '';
 
-  const allCredits = [...tier1, ...tier2, ...tier3];
-  const filtered = allCredits.filter(c => c.tags && c.tags.includes(tag));
-  filtered.forEach((c, i) => flat.appendChild(makeCard(c, i, i * 35, null)));
+  if (items.length === 0) {
+    flat.innerHTML = '<div style="grid-column:1/-1;padding:40px 0;text-align:center;font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);">No credits match these filters</div>';
+    return;
+  }
+
+  items.forEach((c, i) => flat.appendChild(makeCard(c, i * 35)));
 }
 
 buildTiered();
