@@ -230,6 +230,75 @@
     50% { opacity: 1; }
   }
 
+  /* ── PHOTO CAROUSEL ── */
+  .photo-carousel {
+    width: 100%;
+    overflow: hidden;
+    padding: 48px 0;
+    position: relative;
+    border-top: 1px solid rgba(255,255,255,0.04);
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .photo-carousel::before,
+  .photo-carousel::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 80px;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .photo-carousel::before {
+    left: 0;
+    background: linear-gradient(90deg, var(--dark), transparent);
+  }
+  .photo-carousel::after {
+    right: 0;
+    background: linear-gradient(270deg, var(--dark), transparent);
+  }
+  .carousel-track {
+    display: flex;
+    gap: 16px;
+    animation: carouselScroll 35s linear infinite;
+    width: max-content;
+  }
+  .carousel-track:hover {
+    animation-play-state: paused;
+  }
+  .carousel-img {
+    height: 280px;
+    width: auto;
+    border-radius: 2px;
+    flex-shrink: 0;
+    filter: grayscale(0.15) contrast(1.05);
+    transition: filter 0.4s ease, transform 0.4s ease;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .carousel-img:hover {
+    filter: grayscale(0) contrast(1.1);
+    transform: scale(1.02);
+  }
+  .carousel-label {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 8px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--muted);
+    z-index: 3;
+    white-space: nowrap;
+  }
+  @keyframes carouselScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @media (max-width: 800px) {
+    .carousel-img { height: 200px; }
+    .photo-carousel { padding: 32px 0; }
+  }
+
   /* ── SECTION DIVIDERS ── */
   .section-header {
     padding: 36px 60px 16px;
@@ -351,14 +420,19 @@
     text-decoration: none;
     transition: color 0.2s ease;
     cursor: pointer;
+    background-image: linear-gradient(rgba(201,168,76,0.3), rgba(201,168,76,0.3));
+    background-size: 100% 1px;
+    background-position: 0 92%;
+    background-repeat: no-repeat;
   }
   .card-show-link:hover {
     color: var(--gold);
+    background-image: linear-gradient(var(--gold), var(--gold));
   }
   .card-show-link::after {
     content: ' ↗';
-    font-size: 14px;
-    opacity: 0;
+    font-size: 13px;
+    opacity: 0.45;
     transition: opacity 0.2s ease;
     color: var(--gold);
   }
@@ -569,6 +643,22 @@
     <span class="section-sublabel">Episodic Work</span>
   </div>
   <div class="credits-grid" id="tier1-grid"></div>
+
+  <!-- Photo carousel -->
+  <div class="photo-carousel" id="photo-carousel">
+    <div class="carousel-track" id="carousel-track">
+      <img class="carousel-img" src="IMG_7810.jpg" alt="In the field with ARRI Amira">
+      <img class="carousel-img" src="IMG_4242.png" alt="Winter field shoot">
+      <img class="carousel-img" src="IMG_4548.png" alt="Double camera ops on set">
+      <img class="carousel-img" src="IMG_0354.png" alt="On location with bulls">
+      <!-- Duplicated for seamless loop -->
+      <img class="carousel-img" src="IMG_7810.jpg" alt="In the field with ARRI Amira">
+      <img class="carousel-img" src="IMG_4242.png" alt="Winter field shoot">
+      <img class="carousel-img" src="IMG_4548.png" alt="Double camera ops on set">
+      <img class="carousel-img" src="IMG_0354.png" alt="On location with bulls">
+    </div>
+    <span class="carousel-label">In the Field</span>
+  </div>
 
   <div id="tier2-header" class="section-header" style="animation-delay:0.8s">
     <span class="section-label">Features</span>
